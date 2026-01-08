@@ -1,0 +1,44 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check file size (max 5MB)
+    function isValidSize() {
+      return request.resource.size < 5 * 1024 * 1024;
+    }
+    
+    // Helper function to check if file is an image
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+    
+    // Photos storage - users can only access their own photos
+    match /photos/{userId}/{fileName} {
+      // Allow read if user is authenticated and accessing their own photos
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      
+      // Allow write (upload) if:
+      // - User is authenticated
+      // - User is uploading to their own folder
+      // - File is an image
+      // - File size is under 5MB
+      allow write: if isAuthenticated() && 
+                      request.auth.uid == userId &&
+                      isImage() &&
+                      isValidSize();
+      
+      // Allow delete if user owns the photo
+      allow delete: if isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Deny all other access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

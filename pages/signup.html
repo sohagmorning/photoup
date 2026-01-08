@@ -85,6 +85,12 @@
         </div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script src="../js/firebase-config.js"></script>
     <script src="../js/auth.js"></script>
     <script>
         // Form validation and submission
@@ -129,16 +135,21 @@
                 return;
             }
             
-            // Call signup function (will be implemented with Firebase later)
-            successMsg.textContent = 'Account created successfully! Redirecting...';
-            successMsg.classList.remove('hidden');
-            
-            console.log('Signup data:', { name, email, password });
-            
-            // Redirect to login after 2 seconds
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 2000);
+            // Firebase signup
+            signUp(name, email, password)
+                .then((user) => {
+                    successMsg.textContent = 'Account created successfully! Redirecting...';
+                    successMsg.classList.remove('hidden');
+                    
+                    // Redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    errorMsg.textContent = getErrorMessage(error.code);
+                    errorMsg.classList.remove('hidden');
+                });
         });
     </script>
 </body>
