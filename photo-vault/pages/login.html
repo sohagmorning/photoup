@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Photo Vault</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Login to access your secure photo vault</p>
+        </div>
+        
+        <form id="loginForm" class="auth-form">
+            <div class="form-group">
+                <label for="email">Email or Phone</label>
+                <input 
+                    type="text" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Enter your email or phone" 
+                    required
+                    autocomplete="email"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Enter your password" 
+                    required
+                    minlength="6"
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <div class="form-group form-options">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="rememberMe">
+                    Remember me
+                </label>
+                <a href="#" class="forgot-password" id="forgotPasswordLink">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+                Login
+            </button>
+
+            <div id="errorMessage" class="error-message hidden"></div>
+            <div id="successMessage" class="success-message hidden"></div>
+        </form>
+
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reset Password</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your email address and we'll send you a password reset link.</p>
+                <div class="form-group">
+                    <label for="resetEmail">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="resetEmail" 
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+                <button class="btn btn-primary btn-block" id="sendResetLink">
+                    Send Reset Link
+                </button>
+                <div id="resetMessage" class="success-message hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Clear previous messages
+            errorMsg.classList.add('hidden');
+            successMsg.classList.add('hidden');
+            
+            // Validation
+            if (!email || !password) {
+                errorMsg.textContent = 'Please fill in all fields';
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            
+            if (password.length < 6) {
+                errorMsg.textContent = 'Invalid password';
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            
+            // Call login function (will be implemented with Firebase later)
+            successMsg.textContent = 'Login successful! Redirecting to dashboard...';
+            successMsg.classList.remove('hidden');
+            
+            console.log('Login data:', { email, password, rememberMe });
+            
+            // Redirect to dashboard after 1.5 seconds
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        });
+
+        // Forgot password modal
+        const modal = document.getElementById('forgotPasswordModal');
+        const forgotLink = document.getElementById('forgotPasswordLink');
+        const closeModal = document.getElementById('closeModal');
+        
+        forgotLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.remove('hidden');
+        });
+        
+        closeModal.addEventListener('click', function() {
+            modal.classList.add('hidden');
+        });
+        
+        // Close modal on outside click
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+
+        // Send reset link
+        document.getElementById('sendResetLink').addEventListener('click', function() {
+            const resetEmail = document.getElementById('resetEmail').value.trim();
+            const resetMsg = document.getElementById('resetMessage');
+            
+            if (!resetEmail) {
+                alert('Please enter your email address');
+                return;
+            }
+            
+            // Firebase password reset will be implemented later
+            resetMsg.textContent = 'Password reset link sent! Check your email.';
+            resetMsg.classList.remove('hidden');
+            
+            console.log('Password reset requested for:', resetEmail);
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                resetMsg.classList.add('hidden');
+                document.getElementById('resetEmail').value = '';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
