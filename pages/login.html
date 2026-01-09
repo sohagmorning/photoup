@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in to Photus</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="landing-page">
+    <div class="landing-container">
+        <!-- Left Section -->
+        <div class="landing-left">
+            <div class="logo-section">
+                <h1 class="logo">Photus</h1>
+                <p class="tagline">Photus helps you connect and share with the people in your life.</p>
+            </div>
+        </div>
+        
+        <!-- Right Section - Login Form -->
+        <div class="landing-right">
+            <div class="login-card">
+                <form id="loginForm" class="quick-login-form">
+                    <input 
+                        type="text" 
+                        id="email" 
+                        name="email"
+                        placeholder="Email or phone number" 
+                        required
+                        class="fb-input"
+                        autocomplete="email"
+                    >
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password"
+                        placeholder="Password" 
+                        required
+                        class="fb-input"
+                        autocomplete="current-password"
+                    >
+                    <button type="submit" class="btn-fb-primary">Log In</button>
+                    
+                    <div id="errorMessage" class="error-message hidden"></div>
+                    
+                    <a href="#" class="forgot-password-link" id="forgotPasswordLink">Forgot password?</a>
+                    
+                    <div class="divider"></div>
+                    
+                    <a href="signup.html" class="btn-create-account">Create new account</a>
+                </form>
+            </div>
+            
+            <p class="create-page">
+                <a href="#"><strong>Create a Page</strong></a> for a celebrity, brand or business.
+            </p>
+        </div>
+    </div>
+    
+    <footer class="landing-footer">
+        <div class="footer-content">
+            <div class="footer-languages">
+                <a href="#">English (US)</a>
+                <a href="#">Español</a>
+                <a href="#">Français (France)</a>
+                <a href="#">中文(简体)</a>
+                <a href="#">العربية</a>
+                <a href="#">Português (Brasil)</a>
+                <a href="#">Italiano</a>
+                <a href="#">한국어</a>
+                <a href="#">Deutsch</a>
+                <a href="#">हिन्दी</a>
+                <a href="#">日本語</a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-links">
+                <a href="#">Sign Up</a>
+                <a href="#">Log In</a>
+                <a href="#">Messenger</a>
+                <a href="#">Photus Lite</a>
+                <a href="#">About</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="footer-copyright">
+                <span>Photus © 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reset Password</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your email address and we'll send you a password reset link.</p>
+                <div class="form-group">
+                    <label for="resetEmail">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="resetEmail" 
+                        placeholder="Enter your email"
+                        required
+                        class="fb-input"
+                    >
+                </div>
+                <button class="btn-fb-primary" id="sendResetLink">
+                    Send Reset Link
+                </button>
+                <div id="resetMessage" class="success-message hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            
+            const errorMsg = document.getElementById('errorMessage');
+            
+            // Clear previous messages
+            errorMsg.classList.add('hidden');
+            
+            // Validation
+            if (!email || !password) {
+                errorMsg.textContent = 'Please fill in all fields';
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            
+            // Firebase login
+            login(email, password)
+                .then((user) => {
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                })
+                .catch((error) => {
+                    errorMsg.textContent = getErrorMessage(error.code);
+                    errorMsg.classList.remove('hidden');
+                });
+        });
+
+        // Forgot password modal
+        const modal = document.getElementById('forgotPasswordModal');
+        const forgotLink = document.getElementById('forgotPasswordLink');
+        const closeModal = document.getElementById('closeModal');
+        
+        forgotLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.remove('hidden');
+        });
+        
+        closeModal.addEventListener('click', function() {
+            modal.classList.add('hidden');
+        });
+        
+        // Close modal on outside click
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+
+        // Send reset link
+        document.getElementById('sendResetLink').addEventListener('click', function() {
+            const resetEmail = document.getElementById('resetEmail').value.trim();
+            const resetMsg = document.getElementById('resetMessage');
+            
+            if (!resetEmail) {
+                alert('Please enter your email address');
+                return;
+            }
+            
+            // Firebase password reset
+            resetPassword(resetEmail)
+                .then(() => {
+                    resetMsg.textContent = 'Password reset link sent! Check your email.';
+                    resetMsg.classList.remove('hidden');
+                    
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                        resetMsg.classList.add('hidden');
+                        document.getElementById('resetEmail').value = '';
+                    }, 3000);
+                })
+                .catch((error) => {
+                    alert(getErrorMessage(error.code));
+                });
+        });
+    </script>
+</body>
+</html>

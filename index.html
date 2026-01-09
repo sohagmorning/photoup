@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Simple Website</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -27,3 +28,131 @@
     <script src="script.js"></script>
 </body>
 </html>
+=======
+    <title>Photus - Connect with friends and the world around you</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="landing-page">
+    <div class="landing-container">
+        <!-- Left Section -->
+        <div class="landing-left">
+            <div class="logo-section">
+                <h1 class="logo">Photus</h1>
+                <p class="tagline">Connect with friends and the world around you on Photus.</p>
+            </div>
+        </div>
+        
+        <!-- Right Section - Login Form -->
+        <div class="landing-right">
+            <div class="login-card">
+                <form id="quickLoginForm" class="quick-login-form">
+                    <input 
+                        type="text" 
+                        id="emailOrPhone" 
+                        placeholder="Email or phone number" 
+                        required
+                        class="fb-input"
+                    >
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Password" 
+                        required
+                        class="fb-input"
+                    >
+                    <button type="submit" class="btn-fb-primary">Log In</button>
+                    
+                    <div id="quickErrorMessage" class="error-message hidden"></div>
+                    
+                    <a href="#" class="forgot-password-link">Forgot password?</a>
+                    
+                    <div class="divider"></div>
+                    
+                    <a href="pages/signup.html" class="btn-create-account">Create new account</a>
+                </form>
+            </div>
+            
+            <p class="create-page">
+                <a href="#"><strong>Create a Page</strong></a> for a celebrity, brand or business.
+            </p>
+        </div>
+    </div>
+    
+    <footer class="landing-footer">
+        <div class="footer-content">
+            <div class="footer-languages">
+                <a href="#">English (US)</a>
+                <a href="#">Español</a>
+                <a href="#">Français (France)</a>
+                <a href="#">中文(简体)</a>
+                <a href="#">العربية</a>
+                <a href="#">Português (Brasil)</a>
+                <a href="#">Italiano</a>
+                <a href="#">한국어</a>
+                <a href="#">Deutsch</a>
+                <a href="#">हिन्दी</a>
+                <a href="#">日本語</a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-links">
+                <a href="#">Sign Up</a>
+                <a href="#">Log In</a>
+                <a href="#">Messenger</a>
+                <a href="#">Photus Lite</a>
+                <a href="#">Video</a>
+                <a href="#">Places</a>
+                <a href="#">Games</a>
+                <a href="#">Marketplace</a>
+                <a href="#">Meta Pay</a>
+                <a href="#">Meta Store</a>
+                <a href="#">Meta Quest</a>
+                <a href="#">Instagram</a>
+                <a href="#">Threads</a>
+                <a href="#">Fundraisers</a>
+                <a href="#">Services</a>
+                <a href="#">About</a>
+                <a href="#">Create ad</a>
+                <a href="#">Developers</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="footer-copyright">
+                <span>Photus © 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Quick login form submission
+        document.getElementById('quickLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('emailOrPhone').value.trim();
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('quickErrorMessage');
+            
+            // Hide previous errors
+            errorDiv.classList.add('hidden');
+            
+            // Call the login function from auth.js
+            loginUser(email, password)
+                .then(() => {
+                    window.location.href = 'pages/dashboard.html';
+                })
+                .catch((error) => {
+                    errorDiv.textContent = error.message;
+                    errorDiv.classList.remove('hidden');
+                });
+        });
+    </script>
+</body>
+</html>
+>>>>>>> ec5745813240ae7003f83d3c2f181aebebb078f6

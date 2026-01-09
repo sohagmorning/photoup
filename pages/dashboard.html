@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Photo Vault</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-lock"></i>
+                <span>Photo Vault</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link active">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#" class="nav-link" id="userProfile">
+                    <i class="fas fa-user"></i> <span id="userName">User</span>
+                </a>
+                <button class="btn btn-logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-wrapper">
+        <div class="dashboard-container">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <div class="welcome-section">
+                    <h2>Welcome back, <span id="displayName">User</span>!</h2>
+                    <p class="subtitle">Manage your personal photo collection securely</p>
+                </div>
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <i class="fas fa-images"></i>
+                        <div class="stat-info">
+                            <h3 id="totalPhotos">0</h3>
+                            <p>Total Photos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar"></i>
+                        <div class="stat-info">
+                            <h3 id="totalEvents">0</h3>
+                            <p>Events</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-database"></i>
+                        <div class="stat-info">
+                            <h3 id="totalStorage">0 MB</h3>
+                            <p>Storage Used</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="upload-card">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Upload Photos</h3>
+                    <p>Add new photos to your secure vault</p>
+                    <button class="btn btn-primary" id="uploadBtn">
+                        <i class="fas fa-plus"></i> Upload Photos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter & Search Section -->
+            <div class="filter-section">
+                <div class="filter-left">
+                    <h3><i class="fas fa-images"></i> My Photos</h3>
+                </div>
+                <div class="filter-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search photos...">
+                    </div>
+                    <select id="filterEvent" class="filter-select">
+                        <option value="all">All Events</option>
+                        <option value="birthday">Birthday</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="vacation">Vacation</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <select id="sortBy" class="filter-select">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="name">By Name</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Photo Gallery -->
+            <div id="photoGallery" class="gallery-grid">
+                <!-- Sample Photo Cards (will be replaced by Firebase data) -->
+                <div class="photo-card">
+                    <div class="photo-image">
+                        <img src="https://via.placeholder.com/300x200/667eea/ffffff?text=Sample+Photo+1" alt="Sample Photo">
+                    </div>
+                    <div class="photo-info">
+                        <h4>Birthday Party</h4>
+                        <p class="photo-date"><i class="fas fa-calendar"></i> Jan 5, 2026</p>
+                        <div class="photo-actions">
+                            <button class="btn-icon" title="View">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn-icon" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon btn-delete" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <div class="photo-image">
+                        <img src="https://via.placeholder.com/300x200/764ba2/ffffff?text=Sample+Photo+2" alt="Sample Photo">
+                    </div>
+                    <div class="photo-info">
+                        <h4>Vacation</h4>
+                        <p class="photo-date"><i class="fas fa-calendar"></i> Dec 28, 2025</p>
+                        <div class="photo-actions">
+                            <button class="btn-icon" title="View">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn-icon" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon btn-delete" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <div class="photo-image">
+                        <img src="https://via.placeholder.com/300x200/f093fb/ffffff?text=Sample+Photo+3" alt="Sample Photo">
+                    </div>
+                    <div class="photo-info">
+                        <h4>Family Gathering</h4>
+                        <p class="photo-date"><i class="fas fa-calendar"></i> Dec 20, 2025</p>
+                        <div class="photo-actions">
+                            <button class="btn-icon" title="View">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn-icon" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon btn-delete" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state hidden">
+                <i class="fas fa-images"></i>
+                <h3>No Photos Yet</h3>
+                <p>Start uploading photos to your secure vault</p>
+                <button class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Upload Your First Photo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-cloud-upload-alt"></i> Upload Photos</h3>
+                <button class="modal-close" id="closeUploadModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h4>Drag & Drop photos here</h4>
+                    <p>or</p>
+                    <input type="file" id="fileInput" accept="image/*" multiple hidden>
+                    <button class="btn btn-secondary" id="browseBtn">Browse Files</button>
+                    <small>Supported: JPG, PNG, GIF (Max 5MB per file)</small>
+                </div>
+                <div class="form-group">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" placeholder="e.g., Birthday Party, Vacation">
+                </div>
+                <button class="btn btn-primary btn-block" id="uploadFilesBtn" disabled>
+                    <i class="fas fa-upload"></i> Upload Photos
+                </button>
+                <div id="uploadProgress" class="hidden">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p id="progressText">Uploading... 0%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/upload.js"></script>
+    <script src="../js/gallery.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script>
+        // Dashboard interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set user name (will be replaced with Firebase data)
+            const userName = localStorage.getItem('userName') || 'User';
+            document.getElementById('displayName').textContent = userName;
+            document.getElementById('userName').textContent = userName;
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to logout?')) {
+                    localStorage.removeItem('userName');
+                    window.location.href = '../index.html';
+                }
+            });
+
+            // Upload modal
+            const uploadModal = document.getElementById('uploadModal');
+            const uploadBtn = document.getElementById('uploadBtn');
+            const closeUploadModal = document.getElementById('closeUploadModal');
+            const browseBtn = document.getElementById('browseBtn');
+            const fileInput = document.getElementById('fileInput');
+            const uploadFilesBtn = document.getElementById('uploadFilesBtn');
+
+            uploadBtn.addEventListener('click', () => {
+                uploadModal.classList.remove('hidden');
+            });
+
+            closeUploadModal.addEventListener('click', () => {
+                uploadModal.classList.add('hidden');
+            });
+
+            browseBtn.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    uploadFilesBtn.disabled = false;
+                    console.log('Files selected:', this.files.length);
+                }
+            });
+
+            uploadFilesBtn.addEventListener('click', function() {
+                const files = fileInput.files;
+                const eventName = document.getElementById('eventName').value.trim();
+                
+                if (files.length === 0) {
+                    alert('Please select photos to upload');
+                    return;
+                }
+                
+                if (!currentUser) {
+                    alert('You must be logged in to upload photos');
+                    return;
+                }
+                
+                // Show progress
+                const uploadProgress = document.getElementById('uploadProgress');
+                uploadProgress.classList.remove('hidden');
+                uploadFilesBtn.disabled = true;
+                
+                // Upload photos
+                uploadMultiplePhotos(Array.from(files), eventName, currentUser.uid)
+                    .then(async (results) => {
+                        console.log('✅ Upload complete:', results.length, 'photos');
+                        
+                        // Reload photos and stats
+                        await loadPhotos(currentUser.uid);
+                        await updateStats(currentUser.uid);
+                        
+                        // Reset form
+                        fileInput.value = '';
+                        document.getElementById('eventName').value = '';
+                        uploadProgress.classList.add('hidden');
+                        
+                        // Close modal
+                        uploadModal.classList.add('hidden');
+                        
+                        alert(`✅ Successfully uploaded ${results.length} photo(s)!`);
+                    })
+                    .catch((error) => {
+                        console.error('❌ Upload failed:', error);
+                        alert('Upload failed: ' + error.message);
+                        uploadProgress.classList.add('hidden');
+                    })
+                    .finally(() => {
+                        uploadFilesBtn.disabled = false;
+                    });
+            });
+
+            // Close modal on outside click
+            window.addEventListener('click', function(e) {
+                if (e.target === uploadModal) {
+                    uploadModal.classList.add('hidden');
+                }
+            });
+
+            // Search and filter
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                searchPhotos(e.target.value);
+            });
+
+            document.getElementById('filterEvent').addEventListener('change', function(e) {
+                filterPhotos('event', e.target.value);
+            });
+
+            document.getElementById('sortBy').addEventListener('change', function(e) {
+                console.log('Sort by:', e.target.value);
+                // Sorting will be implemented in filter function
+            });
+        });
+    </script>
+</body>
+</html>
