@@ -10,10 +10,442 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: Helvetica, Arial, sans-serif;
+    background: #f0f2f5;
     min-height: 100vh;
-    color: #333;
+    color: #1c1e21;
+}
+
+/* ===========================
+   FACEBOOK-STYLE LANDING PAGE
+   =========================== */
+
+.landing-page {
+    background: linear-gradient(white, #f0f2f5);
+}
+
+.landing-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 20px 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.landing-left {
+    padding-right: 32px;
+}
+
+.logo {
+    color: #1877f2;
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+}
+
+.tagline {
+    font-size: 28px;
+    line-height: 32px;
+    color: #1c1e21;
+    font-weight: normal;
+}
+
+.landing-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.quick-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fb-input {
+    padding: 14px 16px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    font-size: 17px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.fb-input:focus {
+    border-color: #1877f2;
+    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+}
+
+.btn-fb-primary {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-fb-primary:hover {
+    background: #166fe5;
+}
+
+.forgot-password-link {
+    text-align: center;
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.divider {
+    height: 1px;
+    background: #dadde1;
+    margin: 8px 0;
+}
+
+.btn-create-account {
+    background: #42b72a;
+    color: white;
+    border: none;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.btn-create-account:hover {
+    background: #36a420;
+}
+
+.create-page {
+    text-align: center;
+    font-size: 14px;
+    color: #1c1e21;
+}
+
+.create-page a {
+    color: #1c1e21;
+    text-decoration: none;
+}
+
+.create-page a:hover {
+    text-decoration: underline;
+}
+
+/* Landing Footer */
+.landing-footer {
+    background: white;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 8px;
+}
+
+.footer-languages a {
+    color: #8a8d91;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.footer-languages a:hover {
+    text-decoration: underline;
+}
+
+.footer-divider {
+    height: 1px;
+    background: #dadde1;
+    margin: 8px 0;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 8px 0;
+}
+
+.footer-links a {
+    color: #8a8d91;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-copyright {
+    padding-top: 15px;
+    font-size: 11px;
+    color: #8a8d91;
+}
+
+/* ===========================
+   FACEBOOK-STYLE SIGNUP PAGE
+   =========================== */
+
+.signup-page {
+    background: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.signup-overlay {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-container {
+    max-width: 432px;
+    width: 100%;
+}
+
+.signup-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-logo {
+    color: #1877f2;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.signup-tagline {
+    font-size: 18px;
+    color: #606770;
+    margin-top: 8px;
+}
+
+.signup-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 36px;
+    color: #8a8d91;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    background: #f2f3f5;
+    border-radius: 50%;
+}
+
+.signup-form {
+    padding: 8px 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.half-width {
+    width: 100%;
+}
+
+.signup-form .fb-input {
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.form-section {
+    margin: 12px 0;
+}
+
+.section-label {
+    font-size: 12px;
+    color: #606770;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.birthday-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.fb-select {
+    padding: 11px 12px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    font-size: 15px;
+    background: white;
+    cursor: pointer;
+}
+
+.fb-select:focus {
+    border-color: #1877f2;
+    outline: none;
+}
+
+.gender-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.gender-option {
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    padding: 11px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.gender-option:hover {
+    border-color: #1877f2;
+}
+
+.gender-option input[type="radio"] {
+    accent-color: #1877f2;
+    cursor: pointer;
+}
+
+.terms-text {
+    font-size: 11px;
+    color: #777;
+    margin: 16px 0;
+    line-height: 14px;
+}
+
+.terms-text a {
+    color: #385898;
+    text-decoration: none;
+}
+
+.terms-text a:hover {
+    text-decoration: underline;
+}
+
+.btn-fb-signup {
+    background: #00a400;
+    color: white;
+    border: none;
+    padding: 11px 58px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    margin: 16px auto;
+    transition: background 0.2s;
+}
+
+.btn-fb-signup:hover {
+    background: #42b72a;
+}
+
+.signup-footer {
+    text-align: center;
+    padding-top: 16px;
+}
+
+.already-account {
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.already-account:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .landing-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+        gap: 40px;
+    }
+    
+    .landing-left {
+        padding-right: 0;
+    }
+    
+    .logo {
+        font-size: 48px;
+    }
+    
+    .tagline {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 500px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .birthday-row,
+    .gender-row {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Container Styles */

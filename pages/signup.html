@@ -3,85 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Photo Vault</title>
+    <title>Sign up for Photus</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-    <div class="auth-container">
-        <div class="auth-header">
-            <h2>Create Account</h2>
-            <p class="subtitle">Join Photo Vault to securely store your memories</p>
-        </div>
-        
-        <form id="signupForm" class="auth-form">
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input 
-                    type="text" 
-                    id="fullName" 
-                    name="fullName" 
-                    placeholder="Enter your full name" 
-                    required
-                    autocomplete="name"
-                >
+<body class="signup-page">
+    <div class="signup-overlay">
+        <div class="signup-container">
+            <div class="signup-header">
+                <h1 class="signup-logo">Photus</h1>
+                <p class="signup-tagline">It's quick and easy.</p>
             </div>
+            
+            <div class="signup-card">
+                <button class="close-btn" onclick="window.location.href='../index.html'">&times;</button>
+                
+                <form id="signupForm" class="signup-form">
+                    <div class="form-row">
+                        <input 
+                            type="text" 
+                            id="firstName" 
+                            name="firstName" 
+                            placeholder="First name" 
+                            required
+                            class="fb-input half-width"
+                        >
+                        <input 
+                            type="text" 
+                            id="lastName" 
+                            name="lastName" 
+                            placeholder="Last name" 
+                            required
+                            class="fb-input half-width"
+                        >
+                    </div>
 
-            <div class="form-group">
-                <label for="email">Email or Phone</label>
-                <input 
-                    type="text" 
-                    id="email" 
-                    name="email" 
-                    placeholder="Enter email or phone number" 
-                    required
-                    autocomplete="email"
-                >
+                    <input 
+                        type="text" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Mobile number or email" 
+                        required
+                        class="fb-input"
+                    >
+
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="New password" 
+                        required
+                        minlength="6"
+                        class="fb-input"
+                    >
+                    
+                    <div class="form-section">
+                        <label class="section-label">Birthday</label>
+                        <div class="birthday-row">
+                            <select id="birthMonth" required class="fb-select">
+                                <option value="">Month</option>
+                                <option value="1">Jan</option>
+                                <option value="2">Feb</option>
+                                <option value="3">Mar</option>
+                                <option value="4">Apr</option>
+                                <option value="5">May</option>
+                                <option value="6">Jun</option>
+                                <option value="7">Jul</option>
+                                <option value="8">Aug</option>
+                                <option value="9">Sep</option>
+                                <option value="10">Oct</option>
+                                <option value="11">Nov</option>
+                                <option value="12">Dec</option>
+                            </select>
+                            <select id="birthDay" required class="fb-select">
+                                <option value="">Day</option>
+                            </select>
+                            <select id="birthYear" required class="fb-select">
+                                <option value="">Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label class="section-label">Gender</label>
+                        <div class="gender-row">
+                            <label class="gender-option">
+                                <span>Female</span>
+                                <input type="radio" name="gender" value="female" required>
+                            </label>
+                            <label class="gender-option">
+                                <span>Male</span>
+                                <input type="radio" name="gender" value="male" required>
+                            </label>
+                            <label class="gender-option">
+                                <span>Custom</span>
+                                <input type="radio" name="gender" value="custom" required>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <p class="terms-text">
+                        By clicking Sign Up, you agree to our <a href="#">Terms</a>, 
+                        <a href="#">Privacy Policy</a> and <a href="#">Cookies Policy</a>. 
+                        You may receive SMS Notifications from us and can opt out any time.
+                    </p>
+
+                    <button type="submit" class="btn-fb-signup">Sign Up</button>
+
+                    <div id="errorMessage" class="error-message hidden"></div>
+                    <div id="successMessage" class="success-message hidden"></div>
+                </form>
+                
+                <div class="signup-footer">
+                    <a href="login.html" class="already-account">Already have an account?</a>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    placeholder="Create a strong password" 
-                    required
-                    minlength="6"
-                    autocomplete="new-password"
-                >
-                <small class="form-hint">Password must be at least 6 characters</small>
-            </div>
-
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input 
-                    type="password" 
-                    id="confirmPassword" 
-                    name="confirmPassword" 
-                    placeholder="Re-enter your password" 
-                    required
-                    minlength="6"
-                    autocomplete="new-password"
-                >
-            </div>
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="terms" required>
-                    I agree to the Terms & Conditions
-                </label>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-block">
-                Create Account
-            </button>
-
-            <div id="errorMessage" class="error-message hidden"></div>
-            <div id="successMessage" class="success-message hidden"></div>
-        </form>
-
-        <div class="auth-footer">
-            <p>Already have an account? <a href="login.html">Login here</a></p>
         </div>
     </div>
 
@@ -93,15 +128,39 @@
     <script src="../js/firebase-config.js"></script>
     <script src="../js/auth.js"></script>
     <script>
+        // Populate birthday dropdowns
+        const daySelect = document.getElementById('birthDay');
+        const yearSelect = document.getElementById('birthYear');
+        
+        // Populate days
+        for (let i = 1; i <= 31; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            daySelect.appendChild(option);
+        }
+        
+        // Populate years (from current year to 1905)
+        const currentYear = new Date().getFullYear();
+        for (let i = currentYear; i >= 1905; i--) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            yearSelect.appendChild(option);
+        }
+        
         // Form validation and submission
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('fullName').value.trim();
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const terms = document.getElementById('terms').checked;
+            const birthMonth = document.getElementById('birthMonth').value;
+            const birthDay = document.getElementById('birthDay').value;
+            const birthYear = document.getElementById('birthYear').value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
             
             const errorMsg = document.getElementById('errorMessage');
             const successMsg = document.getElementById('successMessage');
@@ -111,14 +170,20 @@
             successMsg.classList.add('hidden');
             
             // Validation
-            if (!name || !email || !password) {
+            if (!firstName || !lastName || !email || !password) {
                 errorMsg.textContent = 'Please fill in all fields';
                 errorMsg.classList.remove('hidden');
                 return;
             }
             
-            if (password !== confirmPassword) {
-                errorMsg.textContent = 'Passwords do not match';
+            if (!birthMonth || !birthDay || !birthYear) {
+                errorMsg.textContent = 'Please provide your birthday';
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            
+            if (!gender) {
+                errorMsg.textContent = 'Please select your gender';
                 errorMsg.classList.remove('hidden');
                 return;
             }
@@ -129,14 +194,9 @@
                 return;
             }
             
-            if (!terms) {
-                errorMsg.textContent = 'Please accept Terms & Conditions';
-                errorMsg.classList.remove('hidden');
-                return;
-            }
-            
             // Firebase signup
-            signUp(name, email, password)
+            const fullName = `${firstName} ${lastName}`;
+            signUp(fullName, email, password)
                 .then((user) => {
                     successMsg.textContent = 'Account created successfully! Redirecting...';
                     successMsg.classList.remove('hidden');
