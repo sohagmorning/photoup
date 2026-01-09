@@ -2,16 +2,17 @@
 // FIREBASE CONFIGURATION
 // ===========================
 
-// ⚠️ IMPORTANT: Replace these values with your own Firebase config
-// Get your config from: Firebase Console → Project Settings → Your apps → Config
+// ✅ Firebase Configuration - Updated from Firebase Console
+// Project: photoup-9bbd5
 
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY_HERE",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyDanRdYKHrR14ZyXyJDqYNmwJVKoSxcN6O",
+    authDomain: "photoup-9bbd5.firebaseapp.com",
+    projectId: "photoup-9bbd5",
+    storageBucket: "photoup-9bbd5.firebasestorage.app",
+    messagingSenderId: "1020414557258",
+    appId: "1:1020414557258:web:4826f317c6f55d9c62bab3",
+    measurementId: "G-GLBFNHLET7"
 };
 
 // Initialize Firebase
